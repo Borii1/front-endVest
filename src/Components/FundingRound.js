@@ -142,7 +142,7 @@ export default function FundingRound() {
   useEffect(() => {
     const fetchFundingRounds = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/funding-rounds/all');
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/funding-rounds/all`);
         const fetchedRows = response.data.map(fundingRound => createData(
           fundingRound.id,
           fundingRound.transactionName,
@@ -177,7 +177,7 @@ export default function FundingRound() {
         if (!startupId) return; // Skip if there's no startup ID
   
         try {
-          const response = await axios.get(`http://localhost:3000/profile-picture/startup/${startupId}`, {
+          const response = await axios.get(`${process.env.REACT_APP_API_URL}/profile-picture/startup/${startupId}`, {
             headers: {
               'Authorization': `Bearer ${localStorage.getItem('token')}`,
             },

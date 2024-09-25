@@ -36,7 +36,7 @@ function Profile() {
 
   const fetchUserData = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/users/profile', {
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/users/profile`, {
         headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` },
       });
       setUserData(response.data);
@@ -47,13 +47,13 @@ function Profile() {
 
     const fetchBusinessProfiles = async () => {
         try {
-            const responseStartups = await axios.get(`http://localhost:3000/startups`, {
+            const responseStartups = await axios.get(`${process.env.REACT_APP_API_URL}/startups`, {
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('token')}`,
                 },
             });
 
-            const responseInvestors = await axios.get(`http://localhost:3000/investors`, {
+            const responseInvestors = await axios.get(`${process.env.REACT_APP_API_URL}/investors`, {
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('token')}`,
                 },
@@ -79,7 +79,7 @@ function Profile() {
     
         try {
         // const userId = /* logic to get the user's ID */;
-        await axios.post(`http://localhost:3000/profile-picture/${userData.id}/upload`, formData, {
+        await axios.post(`${process.env.REACT_APP_API_URL}/profile-picture/${userData.id}/upload`, formData, {
             headers: {
             'Authorization': `Bearer ${localStorage.getItem('token')}`,
             'Content-Type': 'multipart/form-data',

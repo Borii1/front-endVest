@@ -7,6 +7,7 @@ import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import styles from '../styles/Login';
 
 function Login() {
+  
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [emailExists, setEmailExists] = useState(false);
@@ -19,7 +20,7 @@ function Login() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post('http://localhost:3000/users/login', {
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/users/login`, {
         email,
         password,
       });
@@ -39,7 +40,7 @@ function Login() {
 
   const isEmailRegistered = async () => {
     try {
-      const response = await axios.post('http://localhost:3000/users/check-email', {
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/users/check-email`, {
         email,
       });
       setEmailExists(response.data.exists);

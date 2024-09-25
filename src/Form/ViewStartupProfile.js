@@ -86,7 +86,7 @@ function ViewStartupProfile({ profile }) {
             industry: industry,
           };
       
-          const endpoint = `http://localhost:3000/startups/${profile.id}`; // replace with the id of the profile
+          const endpoint = `${process.env.REACT_APP_API_URL}/startups/${profile.id}`; // replace with the id of the profile
 
         await axios.put(endpoint, profileData, {
             headers: {
@@ -109,7 +109,7 @@ function ViewStartupProfile({ profile }) {
             pictureFormData.append('file', fileInputRef.current.files[0]);
       
             // Use the PUT method to update the startup's profile picture
-            const pictureEndpoint = `http://localhost:3000/profile-picture/startup/${profile.id}/update`;
+            const pictureEndpoint = `${process.env.REACT_APP_API_URL}/profile-picture/startup/${profile.id}/update`;
       
             await axios.put(pictureEndpoint, pictureFormData, {
               headers: {
@@ -129,7 +129,7 @@ function ViewStartupProfile({ profile }) {
 
       const fetchProfilePicture = async () => {
         try {
-          const response = await axios.get(`http://localhost:3000/profile-picture/startup/${profile.id}`, {
+          const response = await axios.get(`${process.env.REACT_APP_API_URL}/profile-picture/startup/${profile.id}`, {
             headers: {
               'Authorization': `Bearer ${localStorage.getItem('token')}`,
             },

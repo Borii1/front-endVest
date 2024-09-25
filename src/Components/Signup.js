@@ -70,7 +70,7 @@ function Signup() {
 
     try {
       const response = await axios.post(
-        'http://localhost:3000/users/register',
+        `${process.env.REACT_APP_API_URL}/users/register`,
         userData
       );
       console.log('Signup successful:', response.data);
@@ -84,7 +84,7 @@ function Signup() {
 
   const checkEmailExists = async () => {
     try {
-      const response = await axios.post('http://localhost:3000/users/check-email', {
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/users/check-email`, {
         email,
       });
       setEmailExists(response.data.exists);

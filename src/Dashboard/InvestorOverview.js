@@ -64,7 +64,7 @@ function InvestorOverview() {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/users/profile', {
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/users/profile`, {
           headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` },
         });
         setUserData(response.data);
@@ -82,7 +82,7 @@ function InvestorOverview() {
 
       setLoading(true);
       try {
-        const response = await axios.get('http://localhost:3000/funding-rounds/all');
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/funding-rounds/all`);
         const fetchedRows = response.data.map(fundingRound => {
           const investors = fundingRound.capTableInvestors || [];
           const totalShares = investors.reduce((sum, investor) => sum + (investor.shares || 0), 0);
@@ -179,7 +179,7 @@ function InvestorOverview() {
         if (!startupId) return; // Skip if there's no startup ID
 
         try {
-          const response = await axios.get(`http://localhost:3000/profile-picture/startup/${startupId}`, {
+          const response = await axios.get(`${process.env.REACT_APP_API_URL}/profile-picture/startup/${startupId}`, {
             headers: {
               'Authorization': `Bearer ${localStorage.getItem('token')}`,
             },

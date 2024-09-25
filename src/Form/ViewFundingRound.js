@@ -45,7 +45,7 @@ function ViewFundingRound({ fundingRoundDetails }) {
     useEffect(() => {
         const fetchStartups = async () => {
             try {
-                const response = await axios.get('http://localhost:3000/startups', {
+                const response = await axios.get(`${process.env.REACT_APP_API_URL}/startups`, {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem('token')}`
                     }
@@ -58,7 +58,7 @@ function ViewFundingRound({ fundingRoundDetails }) {
 
         const fetchInvestors = async () => {
             try {
-                const response = await axios.get('http://localhost:3000/investors/All', {
+                const response = await axios.get(`${process.env.REACT_APP_API_URL}/investors/All`, {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem('token')}`
                     }
@@ -208,7 +208,7 @@ function ViewFundingRound({ fundingRoundDetails }) {
                 investors: updatedInvestors
             };
     
-            const response = await axios.put(`http://localhost:3000/funding-rounds/${fundingRoundDetails.id}`, updatePayload, {
+            const response = await axios.put(`${process.env.REACT_APP_API_URL}/funding-rounds/${fundingRoundDetails.id}`, updatePayload, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`
                 }

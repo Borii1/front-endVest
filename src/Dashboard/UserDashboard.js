@@ -123,7 +123,7 @@ function UserDashboard() {
 
     const fetchRecentActivities = async () => {
         try {
-            const response = await axios.get('http://localhost:3000/activities', {
+            const response = await axios.get(`${process.env.REACT_APP_API_URL}/activities`, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`,
                 },
@@ -141,13 +141,13 @@ function UserDashboard() {
 
     const fetchBusinessProfiles = async () => {
         try {
-            const responseStartups = await axios.get(`http://localhost:3000/startups`, {
+            const responseStartups = await axios.get(`${process.env.REACT_APP_API_URL}/startups`, {
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('token')}`,
                 },
             });
 
-        const responseInvestors = await axios.get(`http://localhost:3000/investors`, {
+        const responseInvestors = await axios.get(`${process.env.REACT_APP_API_URL}/investors`, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem("token")}`,
             },
@@ -180,7 +180,7 @@ function UserDashboard() {
         }
 
         try {
-            const endpoint = `http://localhost:3000/startups/${profileToDelete.id}/delete`;
+            const endpoint = `${process.env.REACT_APP_API_URL}/startups/${profileToDelete.id}/delete`;
 
             await axios.put(endpoint, {}, {
                 headers: {

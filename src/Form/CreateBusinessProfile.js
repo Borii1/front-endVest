@@ -99,10 +99,10 @@ function CreateBusinessProfile({ onSuccess }) {
     let endpoint;
     let logMessage;
     if (selectedProfileType === 'Startup Company') {
-      endpoint = 'http://localhost:3000/startups/create';
+      endpoint = `${process.env.REACT_APP_API_URL}/startups/create`;
       logMessage = `${companyName} profile created successfully.`;
     } else if (selectedProfileType === 'Investor') {
-      endpoint = 'http://localhost:3000/investors/create';
+      endpoint = `${process.env.REACT_APP_API_URL}/investors/create`;
       logMessage = `${firstName} ${lastName} profile created successfully.`;
     } else {
       console.error('Invalid profile type:', selectedProfileType);

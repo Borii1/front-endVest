@@ -25,7 +25,7 @@ function UserProfileView() {
 
   const fetchBusinessProfiles = async () => {
     try {
-      const responseInvestors = await axios.get('http://localhost:3000/investors', {
+      const responseInvestors = await axios.get(`${process.env.REACT_APP_API_URL}/investors`, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,
         },
@@ -43,7 +43,7 @@ function UserProfileView() {
       if (!profile?.id) return; // Ensure profile exists
   
       try {
-        const response = await axios.get(`http://localhost:3000/profile-picture/investor/${profile.id}`, {
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/profile-picture/investor/${profile.id}`, {
           headers: {
             'Authorization': `Bearer ${localStorage.getItem('token')}`,
           },
