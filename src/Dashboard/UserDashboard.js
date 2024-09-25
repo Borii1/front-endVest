@@ -238,7 +238,7 @@ function UserDashboard() {
     const fetchCountInvestor = async () => {
         try {
         const response = await axios.get(
-            `http://localhost:3000/cap-table-investor`,
+            `${process.env.REACT_APP_API_URL}/cap-table-investor`,
             {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -255,7 +255,7 @@ function UserDashboard() {
     const fetchTopInvestorContributor = async (userId) => {
         try {
           const response = await axios.get(
-            `http://localhost:3000/cap-table-investor/${userId}/top`,
+            `${process.env.REACT_APP_API_URL}/cap-table-investor/${userId}/top`,
             {
               headers: {
                 Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -272,7 +272,7 @@ function UserDashboard() {
     const handleViewFundingRound = async (fundingRoundId) => {
         try {
         const response = await axios.get(
-            `http://localhost:3000/funding-rounds/${fundingRoundId}`,
+            `${process.env.REACT_APP_API_URL}/funding-rounds/${fundingRoundId}`,
             {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -295,7 +295,7 @@ function UserDashboard() {
             const companyName = fundingRoundToDelete?.startup?.companyName || 'Unknown Company';
             const fundingType = fundingRoundToDelete?.fundingType || 'Unknown Funding Type';
 
-            await axios.put(`http://localhost:3000/funding-rounds/${fundingRoundId}/delete`, {
+            await axios.put(`${process.env.REACT_APP_API_URL}/funding-rounds/${fundingRoundId}/delete`, {
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('token')}`
                 }
@@ -319,7 +319,7 @@ function UserDashboard() {
     const fetchFundingRounds = async () => {
       
         try {
-            const response = await axios.get('http://localhost:3000/funding-rounds/all', {
+            const response = await axios.get(`${process.env.REACT_APP_API_URL}/funding-rounds/all`, {
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('token')}`,
                 },
@@ -344,7 +344,7 @@ function UserDashboard() {
 
     const fetchAllInvestorsByEachUsersCompany = async (companyId) => {
         try {
-            const response = await axios.get(`http://localhost:3000/funding-rounds/${companyId}/investors/all`, {
+            const response = await axios.get(`${process.env.REACT_APP_API_URL}/funding-rounds/${companyId}/investors/all`, {
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('token')}`,
                 },
@@ -361,51 +361,6 @@ function UserDashboard() {
     setSelectedStartupCapTable(selectedCompanyId);
     fetchAllInvestorsByEachUsersCompany(selectedCompanyId);
   };
-
-    // Monthly Funding Chart
-    // const MonthlyFundingChart = ({ userId }) => {
-    //     const [chartData, setChartData] = useState({ labels: [], datasets: [] });
-    //     const [loading, setLoading] = useState(true);
-    
-    //     useEffect(() => {
-    //         const fetchMonthlyFunding = async () => {
-    //             const userId = localStorage.getItem('userId');
-    
-    //             if (!userId) {
-    //                 console.error('User ID is not available');
-    //                 return;
-    //             }
-    
-    //             try {
-    //                 const response = await axios.get(`http://localhost:3000/funding-rounds/monthly-funding/${userId}`, {
-    //                     headers: {
-    //                         Authorization: `Bearer ${localStorage.getItem('token')}`,
-    //                     },
-    //                 });
-    
-    //                 const data = response.data;
-    //                 const chartData = createChartData(data); // Use the utility function
-    
-    //                 setChartData(chartData);
-    //                 setLoading(false);
-    //             } catch (error) {
-    //                 console.error('Error fetching monthly funding data:', error);
-    //                 setLoading(false);
-    //             }
-    //         };
-    
-    //         fetchMonthlyFunding();
-    //     }, [userId]);
-    
-    //     if (loading) return <p>Loading chart data...</p>;
-    
-    //     return (
-    //         <div style={{ height: '400px', width: '100%' }}>
-    //             <Line data={chartData} options={chartOptions} />
-    //         </div>
-    //     );
-    // };
-
 
 return (
     <>
